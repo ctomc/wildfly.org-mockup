@@ -1,0 +1,64 @@
+= Get Help
+tcerar
+2017-10-30
+:revdate: 2017-10-30 14:39:25 +1
+:jbake-type: page
+:jbake-status: published
+:jbake-headline: How to connect with the WildFly community.
+:imagesDir: images/
+:icons: font
+
+[cols="a,a,a"]
+|===
+|
+== User Forums
+
+WildFly's user forums should be your first port of call for any
+user-related issues with WildFly. Be it a question, wanting to report a
+bug, looking for advice, or simply sharing some cool stories you may
+have.
+
+https://community.jboss.org/en/wildfly?view=discussions[Visit the User Forums]
+
+
+.icon:thumbs-up[] Etiquette
+***********************************************************************
+If you are asking for help, have you read through the
+https://docs.jboss.org/author/display/WFLY/Documentation[documentation]
+first? You may find your answer there.
+
+Also, if you are reporting a bug, have you checked our
+http://issues.jboss.org/browse/WFLY[bug tracker] first? It may be a
+known issue.
+***********************************************************************
+|
+== Real time chat
+
+The WildFly community uses https://www.hipchat.com/[HipChat] for
+real-time communications. Join us in the
+https://www.hipchat.com/gFOhnVQke[WildFly user room.]
+
+image:chat.png[chat]
+
+|
+== Developers Mailing List
+
+This is a mailing list geared towards developing WildFly itself. It
+often contains deep, technical discussions on how WildFly works
+internally, how new features could be implemented, and is definitely not
+the place for end user questions such as how to configure, use or even
+troubleshoot WildFly. Please use the User Forums for such questions.
+
+If, however, you are helping contribute to WildFly, we welcome your
+thoughts, ideas and overall participation on the developers' mailing list.
+
+https://lists.jboss.org/mailman/listinfo/wildfly-dev[Join the Developers' Mailing List]
+
+For real-time communications, Join us in the https://www.hipchat.com/gGkjcXNgm[WildFly developer room.]
+
+.icon:envelope[] Archives
+**************************
+Archives of the WildFly developers' mailing list can be found on
+http://wildfly-development.1055759.n5.nabble.com[Nabble] which also has an excellent search interface.
+**************************
+|===

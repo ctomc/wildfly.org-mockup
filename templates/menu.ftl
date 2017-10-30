@@ -5,7 +5,7 @@
         <div class="taglinelight visible-md">Fly Fast, and Free.</div>
     </div>
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded mb-3">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -16,7 +16,7 @@
                 <li class="nav-item"><a class="nav-link" href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>about/">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>news/">News</a></li>
                 <li class="nav-item"><a class="nav-link" href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>downloads/">Downloads</a></li>
-                <li class="nav-item"><a class="nav-link" href="https://docs.jboss.org/author/display/WFLY/Documentation">Documentation</a></li>
+                <li class="nav-item"><a class="nav-link" href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>documentation">Documentation</a></li>
                 <li class="nav-item"><a class="nav-link" href="http://github.com/wildfly/wildfly">Source Code</a></li>
                 <li class="nav-item"><a class="nav-link" href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>gethelp/">Get Help</a></li>
                 <li class="nav-item"><a class="nav-link" href="<#if (content.rootpath)??>${content.rootpath}<#else></#if>joinus/">Join Us</a></li>

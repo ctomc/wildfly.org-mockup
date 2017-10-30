@@ -1,15 +1,13 @@
-<#include "header.ftl">
+<#include "top-with-nav.ftl">
 
-	<#include "menu.ftl">
-	
-	<div class="page-header">
-		<h1><#escape x as x?xml>${content.title}</#escape></h1>
-	</div>
+	<#if (content.headline)?? >
+    <div class="jumbotron page-head">
+            <h1 class="display-3">${content.title}</h1>
+            <p class="lead">${content.headline}</p>
+    </div>
+    </#if>
 
-	<p><em>${content.date?string("dd MMMM yyyy")}</em></p>
+	<div class="post">${content.body}</div>
 
-	<p>${content.body}</p>
-
-	<hr />
 
 <#include "footer.ftl">

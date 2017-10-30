@@ -128,4 +128,19 @@ footer.container ol {
 .listPosts li:last-child {
     border: none;
 }
+.page-head{
+    padding: 2rem 1rem;
+}
 
+ul.list-with-icons img{
+    height: 120px;
+}
+ul.list-with-icons {
+    list-style-type: none;
+    margin-left: 0px;
+    padding: 0;
+}
+
+ul.list-with-icons i {
+    margin-right: 5px;
+}
