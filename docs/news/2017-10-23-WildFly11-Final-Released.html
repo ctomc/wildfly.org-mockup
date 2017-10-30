@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>WildFly 11 Final is now available!</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="http://static.jboss.org/wildfly/images/apple-touch-ico`n-144x144-precomposed.png" name="twitter:image">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href="https://static.jboss.org/css/rhbar.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+       <style>
+          @media (min-width: 980px) {
+            .banner { background-image: url(http://static.jboss.org/wildfly/images/wildfly-banner-1180px.png); height: 110px;  }
+          }
+          @media (max-width: 979px) {
+            .banner { background-image: url(http://static.jboss.org/wildfly/images/wildfly-logo.png); background-repeat:no-repeat; height: 60px; }
+          }
+          @media (max-width: 650px) {
+            .banner { width: 200px; margin: 0px auto; }
+          }
+
+        </style>
+
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="..//img/wildfly_icon_16px.gif">
+  </head>
+<body>
+
+
+<header class="masthead container">
+    <div class="banner"><a href="#"></a>
+        <div class="taglinelight visible-md">Fly Fast, and Free.</div>
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav text-md-center">
+                <li class="nav-item active"><a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="../about/">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="../news/">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="../downloads/">Downloads</a></li>
+                <li class="nav-item"><a class="nav-link" href="../documentation">Documentation</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://github.com/wildfly/wildfly">Source Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="../gethelp/">Get Help</a></li>
+                <li class="nav-item"><a class="nav-link" href="../joinus/">Join Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="../swarm/">WildFly Swarm</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ci.wildfly.org/">CI</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Follow us</a>
+                    <div class="dropdown-menu projectsocialmedia" aria-labelledby="dropdown">
+                        <a class="dropdown-item" href="http://twitter.com/WildFlyAS"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_twitter.png"></a>
+                        <a class="dropdown-item" href="https://plus.google.com/communities/103877841516607784660"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_googleplus.png"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  </header>
+<div class="container"> <div class="row">
+     <div class="col-md-8 post-bg">
+         <div class="post">
+             <meta content="summary" name="twitter.card">
+             <meta content="@WildFlyAS" name="twitter.site">
+             <meta content="WildFly 11 Final is now available!" name="twitter.title">
+             <meta name="twitter.description">
+             <h2 class="title">WildFly 11 Final is now available!</h2>
+             <div class="byline"><p> Posted by jgreene on 23 October 2017 <a
+                     class="label label-info pull-right" href="http://wildfly.org/news/tags/announcement/">announcement</a>
+                 <span class="pull-right">&nbsp;</span> <a class="label label-info pull-right" href="http://wildfly.org/news/tags/release/">release</a>
+                 <span class="pull-right">&nbsp;</span></p></div>
+		 	<div class="article">
+            <div id="preamble"> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>WildFly 11 Final is now available <a href="{base_url}/downloads">for download</a>! The highlights of WildFly 11 are as follows:</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_elytron_new_security_infrastructure">Elytron - New Security Infrastructure</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The biggest change in WildFly 11 is unification on a new common security framework across the full application server. Previously we had two separate security infrastructures (picketbox and security-realms), each covering separate use cases, and largely operating independent of the other. In addition to unification, Elytron brings a number of advanced capabilities such as privilege propagation across multiple service invocations, identity switching, pre-request TLS verification, and rich security policies. Finally, it improves the overall extensibility of the system allowing for tight integration with SSO / IDP systems such as KeyCloak.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>While WildFly 11 introduces a new security infrastructure, the existing security-domain and security-realm configurations and APIs are all present and internally mapped to Elytron. To further ease the impact of this change, WildFly 11’s default configurations still use the legacy security-domains and security-realms. A subsequent release will convert the default configurations over to the new configuration model.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>For more information see the Elytron documentation: <a href="https://docs.jboss.org/author/display/WFLY/WildFly+Elytron+Security" class="bare">https://docs.jboss.org/author/display/WFLY/WildFly+Elytron+Security</a></p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>As well as the section on migration: <a href="https://docs.jboss.org/author/display/WFLY/Migrate+Legacy+Security+to+Elytron+Security" class="bare">https://docs.jboss.org/author/display/WFLY/Migrate+Legacy+Security+to+Elytron+Security</a></p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_simplified_ejb_naming_proxies">Simplified EJB / Naming Proxies</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>JNDI and EJB invocation have both been simplified and enhanced in WildFly 11. There is a new naming client library, WildFly Naming Client that allows you to easily configure access to WildFly with minimal properties and configuration. EJBs (and other resources) can be accessed in a dynamic discovery mode, or alternatively, in a new point to point mode that locks all EJB proxies to a specified address. This replaces the previous scoped context feature with more intuitive semantics that are ideal for ad-hoc behavior. Additionally, with the new Elytron authentication infrastructure, the user identity can now be changed in-between requests. Finally, older clients from past WildFly releases can still be used with WildFly 11.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>See the following for more information on the new WildFly Naming client:<br> <a href="https://github.com/wildfly/wildfly-naming-client" class="bare">https://github.com/wildfly/wildfly-naming-client</a></p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_request_oriented_ejb_jndi_over_http">Request oriented EJB/JNDI over HTTP</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Since WildFly 8, all protocols (with the exception of IIOP) can utilize HTTP Upgrade to communicate over a reduced set of ports on the server (one for management, and one for applications). However, since HTTP Upgrade converts the connection to the native protocol used, any HTTP load-balancers acting as an intermediary can only balance on initial connection establishment. To allow for balancing at the individual invocation level, a new “pure” HTTP protocol was added. Clients which utilize http:// URLs as opposed to remoting+http:// will obtain this new behavior. Since this protocol utilizes standard HTTP behavior, it can be efficiently balanced by any load-balancer, not just the one built into WildFly.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_wildfly_openssl_http_2">WildFly OpenSSL &amp; HTTP/2</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>WildFly 11 now provides a JSSE provider that can offload TLS handling from the JVM’s internal implementation to an OpenSSL library on your system, typically improving TLS performance. If the version discovered and/or specified is 1.0.2 or greater, then WildFly will utilize OpenSSL’s ALPN support to provide HTTP/2 support. HTTP/2 support will be disabled on versions less than 1.0.2.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>Note that HTTP/2 is also supported without OpenSSL, out of the box, on Java 8 (on VMs derived from OpenJDK) and Java 9 (using the new standard ALPN API).</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>You can enable OpenSSL in the default configurations with the following CLI command:</p> 
+  </div> 
+  <div class="listingblock"> 
+   <div class="content"> 
+    <pre class="prettyprint highlight"><code>/core-service=management/security-realm=ApplicationRealm/server-identity=ssl:write-attribute(name=protocol,value=openssl.TLS)</code></pre> 
+   </div> 
+  </div> 
+  <div class="paragraph"> 
+   <p>If your openssl library is not installed in a standard location, you will need to additionally set the org.wildfly.openssl.path system property to point to the location of the library:</p> 
+  </div> 
+  <div class="listingblock"> 
+   <div class="content"> 
+    <pre class="prettyprint highlight"><code>-Dorg.wildfly.openssl.path=/path/to/dir/with/openssl/lib</code></pre> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_new_load_balancer_configs">New Load-Balancer Configs</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>In order to simplify the setup of WildFly as an HTTP load-balancer, there is an additional standalone-load-balancer.xml configuration in the distribution, which is an instance slimmed to just running the load balancing services. Additionally the stock domain.xml also includes this as a profile configuration that can be referenced by server groups.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_graceful_shutdown_startup_improvements">Graceful Shutdown/Startup Improvements</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Distributed transactions are now handled by the graceful shutdown mechanism. Existing transactions will allow local operations to continue, but any new in-flowed transaction will be rejected. Additionally there is a new EJB parameter that allows for additional remote calls to occur against an established/active remote transaction. Finally you can now start the server directly in suspended mode, for staging changes. This is now part of the default start sequence where the server enters suspend first, and then resumes after all services have launched, so new requests aren’t accepted during the brief window of the server starting.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_web_console_improvements">Web Console Improvements</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>A number of Web Console improvements are included in WildFly 11, including the ability to see recent configuration changes, to manage active JMS transactions, manage active batch jobs, manage Undertow filters, and test data-sources during creation.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_management_and_configuration_improvements">Management and Configuration Improvements</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>WildFly 11 now supports remote managed exploded deployments, which allows remote management clients the ability to update content within the deployment, such as html and jsp files without requiring a full redeployment. Additionally there is a new management operation that can be used to read individual files in any deployment. In addition to these new capabilities, errors in the XML now lead to pretty printed easier to understand error messages,</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>Also notable is that CLI tab completion can now tab complete attribute reference values that have capabilities present, such as references to socket bindings. Finally, there is a new SPI for server extensions, that can be used to register a process state listener, and react to server life-cycle changes (such as the server stopping).</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_further_reading">Further Reading</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>In the run-up to the release, we have been blogging about WildFly 11’s features. These articles contain detailed information and useful tips on how take advantage of these capabilities, so be sure to take a look!</p> 
+  </div> 
+  <table class="tableblock frame-all grid-all spread"> 
+   <caption class="title">
+    Table 1. Recent Articles
+   </caption> 
+   <colgroup> 
+    <col style="width: 25%;"> 
+    <col style="width: 75%;"> 
+   </colgroup> 
+   <thead> 
+    <tr> 
+     <th class="tableblock halign-left valign-top">Author</th> 
+     <th class="tableblock halign-left valign-top">Title</th> 
+    </tr> 
+   </thead> 
+   <tbody> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Emmanuel Hugonnet</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://wildfly.org/news/2017/09/08/Exploded-deployments/">Using exploded deployments and CLI attachments</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Farah Juma</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.jboss.org/people/fjuma/blog/2017/09/08/getting-started-with-ejbs-and-elytron-part-1">How to secure EJBs with Elytron and invoke them from remote clients</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Farah Juma</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.jboss.org/people/fjuma/blog/2017/09/08/getting-started-with-ejbs-and-elytron-part-2">EJB invocations from remote servers</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Farah Juma</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://developer.jboss.org/people/fjuma/blog/2017/09/28/how-to-use-an-elytron-sasl-plus-mechanism">How to use an Elytron SASL mechanism that supports channel binding</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Claudio Miranda</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://claudius.com.br/2017/09/wildfly-11-web-console-new-features">Admin/Web Console Features &amp; Enhancements</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Darran Lofthouse</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://darranl.blogspot.ch/2017/09/wildfly-elytron-add-kerberos.html">WildFly Elytron - Add Kerberos Authentication to Existing Web Application</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Darran Lofthouse</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://darranl.blogspot.ch/2017/09/using-wildfly-elytron-with-undertow.html">Using WildFly Elytron with Undertow Standalone</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Brian Stansberry</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://wildfly.org/news/2017/09/29/Management-model-referential-integrity/">Management Model Referential Integrity and Suggestions</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Jeff Mesnil</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://wildfly.org/news/2017/10/03/Messaging-features/">Messaging features in WildFly 11</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Stuart Douglas</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://wildfly.org/news/2017/10/06/OpenSSL-Support-In-Wildfly/">OpenSSL &amp; HTTP/2</a></p></td> 
+    </tr> 
+    <tr> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock">Ken Wills</p></td> 
+     <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://wildfly.org/news/2017/10/09/Embedded-Host-Controller/">Embedded Hostcontroller</a></p></td> 
+    </tr> 
+   </tbody> 
+  </table> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_jira_release_notes">Jira Release Notes</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The full list of issues resolved is available <a href="https://issues.jboss.org/secure/ReleaseNote.jspa?projectId=12313721&amp;version=12335280">here</a>.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_what_s_next">What’s Next</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>Now that WildFly 11 is out the door, we plan to move to a faster, more incremental release model, starting with WildFly 12. Expect to see more details here in the future, and as always, your contributions are welcome!</p> 
+  </div> 
+ </div> 
+</div>
+            </div>
+     </div>
+
+
+         <nav aria-label="news navigation">
+             <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        &laquo; Newer
+                    </a>
+                </li>
+                <li class="page-item disabled"><a class="page-link" href="#">Post 0 of 0</a></li>
+
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        Older &raquo;
+                    </a>
+                </li>
+             </ul>
+         </nav>
+ </div>
+     <div class="col-md-4">
+         <div class="row">
+             <div class="col-md-12 well post-bg"><h2>Jason Greene</h2>
+                 <p><img class="pull-right portrait" src="http://wildfly.org/images/jgreene.jpg"> <span class="bio-size">I am currently the lead of the WildFly application server project. I am also a member of the JCP, and represent Red Hat on the Java EE specification. During my tenure at JBoss, I have worked in many areas including the application server, clustering, web services, AOP, and security. My interests include concurrency, distributed computing, hardware and programming language design.</span>
+                 </p>
+                 <p class="bio-size"><strong>Location:&nbsp;</strong> Madison, WI </p>
+                 <p class="bio-size"><strong>Occupation:&nbsp;</strong> Chief Architect, JBoss EAP </p></div>
+         </div>
+         <div class="row">
+             <div class="col-md-12 well post-bg"><h2> Latest News <a class="rss" href="http://wildfly.org/news.atom"> <i
+                     class="icon-rss"></i> </a></h2>
+                 <ul class="listPosts">
+                     <li><span class="name">Jason Greene</span> <span class="meta">Oct 23, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/">WildFly 11 Final is now
+                         available!</a></li>
+                     <li><span class="name">Ken Wills</span> <span class="meta">Oct 09, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/09/Embedded-Host-Controller/">Running an Embedded WildFly
+                         Host Controller in the CLI</a></li>
+                     <li><span class="name">Stuart Douglas</span> <span class="meta">Oct 06, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/06/OpenSSL-Support-In-Wildfly/">OpenSSL support with
+                         WildFly</a></li>
+                     <li><span class="name">Jeff Mesnil</span> <span class="meta">Oct 03, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/03/Messaging-features/">Messaging features in WildFly
+                         11</a></li>
+                     <li><span class="name">Brian Stansberry</span> <span class="meta">Sep 29, 2017</span> <a
+                             href="http://wildfly.org/news/2017/09/29/Management-model-referential-integrity/">Management
+                         Model Referential Integrity and Suggestions</a></li>
+                     <li><a class="pull-right" href="http://wildfly.org/news">More &raquo;</a></li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </div>
+
+</div>
+<footer class="container">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1"><h4>Navigate</h4>
+            <ul>
+                <li><a href="http://wildfly.org/about/" title="About">About</a></li>
+                <li><a href="http://wildfly.org/gethelp/" title="Get Help">Get Help</a></li>
+                <li><a href="https://community.jboss.org/en/wildfly?view=discussion" title="Forums">Forums</a></li>
+                <li><a href="http://wildfly.org/downloads/" title="Download">Download</a></li>
+                <li><a href="http://wildfly.org/swarm/" title="WildFly Swarm">WildFly Swarm</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2"><h4>Follow Us</h4>
+            <ul>
+                <li><a href="http://wildfly.org/news/" title="News">News</a> <a href="http://wildfly.org/news.atom" title="Atom">(Atom Feed)</a></li>
+                <li><a href="https://twitter.com/WildFlyAS" title="Twitter">Twitter</a></li>
+                <li><a href="https://plus.google.com/communities/103877841516607784660" title="Google+">Google+</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2"><h4>Contribute</h4>
+            <ul>
+                <li><a href="https://issues.jboss.org/browse/WFLY" title="Submit a bug">Submit a bug</a></li>
+                <li><a href="https://github.com/wildfly/wildfly/fork" title="Fork">Fork The Code</a></li>
+                <li><a href="http://wildfly.org/joinus/" title="Join Us">Join Us</a></li>
+                <li><a href="http://wildfly.org/governance/" title="Governance">Governance</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 col-md-offset-1"><h4>LGPL 2.1 License</h4>
+            <p>All dependencies of this project are available under the LGPL or a compatible license.</p></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1"><p style="margin-top: 5px; font-size: 80%;"> © Copyright 2017 Red Hat, Inc. <br> <i class="icon-fire"></i> Made with <a
+                href="https://github.com/jbossorg/bootstrap-community" style="text-decoration: underline;">JBoss Community Bootstrap</a> and <a
+                href="http://awestruct.org/" style="text-decoration: underline;">Awestruct</a> <br> <i class="icon-globe"></i> This website is open source! If you want to
+            improve it, <a href="http://github.com/wildfly/wildfly.org" style="text-decoration: underline;">fork the project,</a> and send a pull request. <br> <i
+                    class="icon-share"></i> Website released under <a href="http://creativecommons.org/licenses/by/3.0/" style="text-decoration: underline;">CC BY 3.0.</a></p></div>
+        <div class="col-md-3 col-md-offset-1">
+            <div class="jbossbadge"><a href="http://www.jboss.org/"> <img src="http://static.jboss.org/theme/images/common/jbossbadge.png"> </a></div>
+        </div>
+        <div id="companyfooter">
+            <div class="redhatlogo">
+                <div id="logospacer"></div>
+                <a href="http://www.redhat.com/"><img src="http://static.jboss.org/theme/images/common/redhat_logo.png"></a></div>
+        </div>
+    </div>
+</footer>
+<span class="backToTop"> <a href="#top">back to top</a> </span>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

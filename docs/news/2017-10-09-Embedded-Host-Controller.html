@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Running an Embedded WildFly Host Controller in the CLI</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="http://static.jboss.org/wildfly/images/apple-touch-ico`n-144x144-precomposed.png" name="twitter:image">
+
+    <!-- Le styles -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/asciidoctor.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+      <link href="https://static.jboss.org/css/rhbar.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+       <style>
+          @media (min-width: 980px) {
+            .banner { background-image: url(http://static.jboss.org/wildfly/images/wildfly-banner-1180px.png); height: 110px;  }
+          }
+          @media (max-width: 979px) {
+            .banner { background-image: url(http://static.jboss.org/wildfly/images/wildfly-logo.png); background-repeat:no-repeat; height: 60px; }
+          }
+          @media (max-width: 650px) {
+            .banner { width: 200px; margin: 0px auto; }
+          }
+
+        </style>
+
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="..//img/wildfly_icon_16px.gif">
+  </head>
+<body>
+
+
+<header class="masthead container">
+    <div class="banner"><a href="#"></a>
+        <div class="taglinelight visible-md">Fly Fast, and Free.</div>
+    </div>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav text-md-center">
+                <li class="nav-item active"><a class="nav-link" href="../">Home <span class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a class="nav-link" href="../about/">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="../news/">News</a></li>
+                <li class="nav-item"><a class="nav-link" href="../downloads/">Downloads</a></li>
+                <li class="nav-item"><a class="nav-link" href="../documentation">Documentation</a></li>
+                <li class="nav-item"><a class="nav-link" href="http://github.com/wildfly/wildfly">Source Code</a></li>
+                <li class="nav-item"><a class="nav-link" href="../gethelp/">Get Help</a></li>
+                <li class="nav-item"><a class="nav-link" href="../joinus/">Join Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="../swarm/">WildFly Swarm</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://ci.wildfly.org/">CI</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Follow us</a>
+                    <div class="dropdown-menu projectsocialmedia" aria-labelledby="dropdown">
+                        <a class="dropdown-item" href="http://twitter.com/WildFlyAS"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_twitter.png"></a>
+                        <a class="dropdown-item" href="https://plus.google.com/communities/103877841516607784660"><img src="http://static.jboss.org/theme/images/common/socialmedia_icon40_googleplus.png"></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+  </header>
+<div class="container"> <div class="row">
+     <div class="col-md-8 post-bg">
+         <div class="post">
+             <meta content="summary" name="twitter.card">
+             <meta content="@WildFlyAS" name="twitter.site">
+             <meta content="WildFly 11 Final is now available!" name="twitter.title">
+             <meta name="twitter.description">
+             <h2 class="title">Running an Embedded WildFly Host Controller in the CLI</h2>
+             <div class="byline"><p> Posted by kwills on 09 October 2017 <a
+                     class="label label-info pull-right" href="http://wildfly.org/news/tags/announcement/">announcement</a>
+                 <span class="pull-right">&nbsp;</span> <a class="label label-info pull-right" href="http://wildfly.org/news/tags/release/">release</a>
+                 <span class="pull-right">&nbsp;</span></p></div>
+		 	<div class="article">
+            <div id="preamble"> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>WildFly supports running a standalone server in <a href="{base_url}/news/2015/03/13/Offline-CLI/">Offline mode</a> as an embedded server. An analogous capability has been added for domain mode in the form of running an offline host controller. This article discusses some of the details and possible applications of this feature.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_a_id_introduction_a_introduction"><a id="introduction"></a>Introduction</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>For those not familiar with the existing embedded standalone server, see: <a href="{base_url}/news/2015/03/13/Offline-CLI/">Offline mode Running an Embedded WildFly 9 Server in the CLI · WildFly</a>. One of the major use cases of this feature was to allow local administration of a WIldFly / <a href="https://developers.redhat.com/products/eap/overview/">JBoss EAP</a> instance without requiring a socket based connection, or opening any local ports but still enabling configuration and administration operations. The embedded approach also allows for a fast boot that will allow multiple concurrent running instances to co-exist without configuring any additional socket offsets or interfaces to avoid port conflicts etc.</p> 
+  </div> 
+  <div class="paragraph"> 
+   <p>Using <em>jboss-cli.sh</em> and the <em>embed-host-controller</em> command enables a fast and flexible means of configuring host controller instances and servers.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_a_id_embeddedhc_a_embedded_host_controller"><a id="embeddedhc"></a>Embedded Host Controller</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>In a similar way to the standalone <em>embed-server</em> command, the <em>embed-host-controller</em> command is provided, to start an embedded host controller running in the CLI. This host controller is started in <em>admin-only</em> mode, and no servers are started. [See below for more details on <em>admin-only</em> restrictions].</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_starting_an_embedded_host_controller">Starting an embedded Host Controller:</h2> 
+ <div class="sectionbody"> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>$ ./bin/jboss-cli.sh
+
+You are disconnected at the moment. Type 'connect' to connect to the server or 'help' for the list of supported commands.
+[disconnected /] embed-host-controller --std-out=echo
+11:07:46,723 INFO  [org.jboss.modules] (AeshProcess: 1) JBoss Modules version 1.6.0.Final
+11:07:46,825 INFO  [org.jboss.msc] (AeshProcess: 1) JBoss MSC version 1.2.7.SP1
+11:07:46,870 INFO  [org.jboss.as] (MSC service thread 1-7) WFLYSRV0049: WildFly Full 11.0.0 (WildFly Core 3.0.1.Final) starting
+[ Note: some startup output omitted for brevity. ]
+11:07:48,845 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0 (WildFly Core 3.0.1.Final) (Host Controller) started in 2105ms - Started 56 of 61 services (18 services are lazy, passive or on-demand)
+
+[domain@embedded /] ls -l
+ATTRIBUTE                VALUE           TYPE
+domain-organization      undefined       STRING
+launch-type              EMBEDDED        STRING
+local-host-name          master          STRING
+management-major-version 5               INT
+management-micro-version 0               INT
+management-minor-version 0               INT
+name                     Unnamed Domain  STRING
+namespaces               []              OBJECT
+process-type             Host Controller STRING
+product-name             WildFly Full    STRING
+product-version          11.0.0          STRING
+release-codename         Kenny           STRING
+release-version          3.0.1.Final     STRING
+schema-locations         []              OBJECT
+
+CHILD                     MIN-OCCURS MAX-OCCURS
+core-service              n/a        n/a
+deployment                n/a        n/a
+deployment-overlay        n/a        n/a
+extension                 n/a        n/a
+host                      n/a        n/a
+host-exclude              n/a        n/a
+interface                 n/a        n/a
+management-client-content n/a        n/a
+path                      n/a        n/a
+profile                   n/a        n/a
+server-group              n/a        n/a
+socket-binding-group      n/a        n/a
+system-property           n/a        n/a</pre> 
+   </div> 
+  </div> 
+  <div class="paragraph"> 
+   <p>The non-modular client may also be used from the <em>bin/client</em> WildFly distribution:</p> 
+  </div> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>$ java -jar bin/client/jboss-cli-client.jar
+You are disconnected at the moment. Type 'connect' to connect to the server or 'help' for the list of supported commands.
+[disconnected /] embed-host-controller --jboss-home=/wildfly-11.0.0
+Warning! The CLI is running in a non-modular environment and cannot load commands from management extensions.
+[domain@embedded /] cd /host=master/server-config=server-one
+[domain@embedded server-config=server-one] ls -l
+ATTRIBUTE                            VALUE             TYPE
+auto-start                           true              BOOLEAN
+cpu-affinity                         undefined         STRING
+group                                main-server-group STRING
+name                                 server-one        STRING
+priority                             undefined         INT
+socket-binding-default-interface     undefined         STRING
+socket-binding-group                 undefined         STRING
+socket-binding-port-offset           0                 INT
+status                               STOPPED           STRING
+update-auto-start-with-server-status false             BOOLEAN
+
+CHILD           MIN-OCCURS MAX-OCCURS
+interface       n/a        n/a
+jvm             n/a        n/a
+path            n/a        n/a
+ssl             n/a        n/a
+system-property n/a        n/a
+[domain@embedded server-config=server-one]</pre> 
+   </div> 
+  </div> 
+  <div class="paragraph"> 
+   <p>See <a href="{base_url}/news/2015/03/13/Offline-CLI/#classloading">Modular vs Non-Modular Classloading and JBOSS_HOME</a> in the original embedded server news article for details.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_executing_commands">Executing commands:</h2> 
+ <div class="sectionbody"> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>[domain@embedded /]  /host=master/interface=public:write-attribute(name=inet-address, value=127.0.0.1)
+{
+    "outcome" =&gt; "success",
+    "result" =&gt; undefined,
+    "server-groups" =&gt; undefined,
+    "response-headers" =&gt; {"process-state" =&gt; "reload-required"}
+}</pre> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_reloading">Reloading:</h3> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>[domain@embedded /] reload --host=master --admin-only=true
+11:17:20,092 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0 (WildFly Core 3.0.1.Final) (Host Controller) started in 279ms - Started 56 of 61 services (18 services are lazy, passive or on-demand)
+[domain@embedded /]</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Note that currently, the embedded host controller may only be started / reloaded in <em>admin-only</em> mode. In domain mode, servers are started and stopped via use of the <em>process controller</em> which is not currently supported as part of embedded mode.</p> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_stopping">Stopping:</h3> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>[domain@embedded /] stop-embedded-host-controller
+11:08:29,925 INFO  [org.jboss.as] (MSC service thread 1-7) WFLYSRV0050: WildFly Full 11.0.0 (WildFly Core 3.0.1.Final) stopped in 13ms</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_command_usage">Command usage:</h3> 
+   <div class="paragraph"> 
+    <p>The <em>embed-host-controller</em> command has several options that behave in the same way as the previously mentioned standalone embedded server, which will not be discussed again here. The relevant <em>embed-host-controller</em> parameters are:</p> 
+   </div> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>-c                - Name of the domain configuration file to use
+                     (default is "domain.xml")
+                     (Same as --domain-config)
+
+--domain-config   - Name of the domain configuration file to use
+                     (default is "domain.xml")
+                     (Same as -c)
+
+--host-config     - Name of the host configuration file to use
+                     (default is "host.xml")</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>As mentioned above, <em>--jboss-home</em>, <em>--std-out</em> and <em>--timeout</em> may also be provided and function in the same manner as the <a href="{base_url}/news/2015/03/13/Offline-CLI/">embed-server</a> command. The configuration files mentioned above (domain.xml, host.xml) above should be located in the <em>$JBOSS_HOME/domain/configuration</em> directory (or under the location pointed to by the system property <em>jboss.domain.config.dir</em>.) [See <a href="https://docs.jboss.org/author/display/WFLY8/Command+line+parameters">Command Line Properties</a> for additional details on those properties.]</p> 
+   </div> 
+   <div class="paragraph"> 
+    <p>For example, to start an embedded host controller with configuration files contained in the <em>otherdomain/configuration</em> directory:</p> 
+   </div> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>[wildfly-11]$ ./bin/jboss-cli.sh -Djboss.domain.config.dir=/wildfly-11/otherdomain/configuration
+You are disconnected at the moment. Type 'connect' to connect to the server or 'help' for the list of supported commands.
+[disconnected /] embed-host-controller --std-out=echo
+11:26:44,122 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0 (WildFly Core 3.0.1.Final) (Host Controller) started in 1894ms - Started 56 of 61 services (18 services are lazy, passive or on-demand)
+[domain@embedded /]</pre> 
+    </div> 
+   </div> 
+   <div class="paragraph"> 
+    <p>Configuration may then proceed and will be persisted to the <em>otherdomain/configuration</em> directory. This directory must already exist and contain base copies of the required configuration files (host.xml, domain.xml etc.).</p> 
+   </div> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_scripted_configuration">Scripted configuration</h2> 
+ <div class="sectionbody"> 
+  <div class="paragraph"> 
+   <p>The embedded host controller may be useful for configuration from a prepared file of scripted CLI commands. For example:</p> 
+  </div> 
+  <div class="literalblock"> 
+   <div class="content"> 
+    <pre>$ cat commands.cli
+embed-host-controller
+/server-group=main-server-group:write-attribute(name=socket-binding-port-offset, value=100)
+/host=master/server-config=server-one:write-attribute(name=auto-start, value=false)
+deploy --all-server-groups test.war
+stop-embedded-host-controller
+
+$ ./bin/jboss-cli.sh --file=commands.cli
+{
+    "outcome" =&gt; "success",
+    "result" =&gt; undefined,
+    "server-groups" =&gt; undefined
+}</pre> 
+   </div> 
+  </div> 
+  <div class="paragraph"> 
+   <p>This approach may be used for a variety of setup and configuration tasks, for example setting up unit or integration tests quickly using the embedded host controller, then restarting in domain mode using <em>domain.sh</em> may require less time than starting the host controller normally using <em>domain.sh</em>, performing configuration and deployment etc, then restarting.</p> 
+  </div> 
+ </div> 
+</div> 
+<div class="sect1"> 
+ <h2 id="_other_examples">Other examples</h2> 
+ <div class="sectionbody"> 
+  <div class="sect2"> 
+   <h3 id="_set_server_socket_binding_port_offset">Set server socket-binding-port-offset</h3> 
+   <div class="paragraph"> 
+    <p>In order to allow more than one running instance on the same host, a common configuration for testing (or any scenario needing to run a domain controller and a slave host controller (with servers) on the same host), a <em>socket-binding-port-offset</em> is commonly used. The slave host is configured to have a port offset so that the ports already in use by the domain controller’s servers do not conflict with those of the slave.</p> 
+   </div> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>[domain@embedded /] /server-group=main-server-group:write-attribute(name=socket-binding-port-offset, value=100)
+{
+    "outcome" =&gt; "success",
+    "result" =&gt; undefined,
+    "server-groups" =&gt; undefined
+}</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_configure_connection_to_remote_domain_controller">Configure connection to remote domain controller</h3> 
+   <div class="paragraph"> 
+    <p>When configuring a slave host controller, configure the connection to the domain controller.</p> 
+   </div> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>[domain@embedded /] /host=master:write-remote-domain-controller(host=remotedc.somedomain.tld, security-realm=ManagementRealm)
+{
+    "outcome" =&gt; "success",
+    "result" =&gt; undefined,
+    "server-groups" =&gt; undefined,
+    "response-headers" =&gt; {"process-state" =&gt; "reload-required"}
+}</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_system_property">System property</h3> 
+   <div class="paragraph"> 
+    <p>This can be useful as an initial configuration step before the host controller is started with <em>domain.sh</em>:</p> 
+   </div> 
+   <div class="literalblock"> 
+    <div class="content"> 
+     <pre>[domain@embedded /] /server-group=main-server-group/system-property=foo:add(value=bar)
+{
+    "outcome" =&gt; "success",
+    "result" =&gt; undefined,
+    "server-groups" =&gt; undefined
+}</pre> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="sect2"> 
+   <h3 id="_future_direction">Future Direction</h3> 
+   <div class="paragraph"> 
+    <p>In the future we’d like to allow for starting the embedded host controller with some additional features, such as empty configurations in host and domain configuration files (similar to standalone embedded), and also re-examine the meaning and usage of <em>--admin-only</em> in the context of the embedded host controller.</p> 
+   </div> 
+  </div> 
+ </div> 
+</div>
+            </div>
+     </div>
+
+
+         <nav aria-label="news navigation">
+             <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        &laquo; Newer
+                    </a>
+                </li>
+                <li class="page-item disabled"><a class="page-link" href="#">Post 0 of 0</a></li>
+
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Next">
+                        Older &raquo;
+                    </a>
+                </li>
+             </ul>
+         </nav>
+ </div>
+     <div class="col-md-4">
+         <div class="row">
+             <div class="col-md-12 well post-bg"><h2>Jason Greene</h2>
+                 <p><img class="pull-right portrait" src="http://wildfly.org/images/jgreene.jpg"> <span class="bio-size">I am currently the lead of the WildFly application server project. I am also a member of the JCP, and represent Red Hat on the Java EE specification. During my tenure at JBoss, I have worked in many areas including the application server, clustering, web services, AOP, and security. My interests include concurrency, distributed computing, hardware and programming language design.</span>
+                 </p>
+                 <p class="bio-size"><strong>Location:&nbsp;</strong> Madison, WI </p>
+                 <p class="bio-size"><strong>Occupation:&nbsp;</strong> Chief Architect, JBoss EAP </p></div>
+         </div>
+         <div class="row">
+             <div class="col-md-12 well post-bg"><h2> Latest News <a class="rss" href="http://wildfly.org/news.atom"> <i
+                     class="icon-rss"></i> </a></h2>
+                 <ul class="listPosts">
+                     <li><span class="name">Jason Greene</span> <span class="meta">Oct 23, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/23/WildFly11-Final-Released/">WildFly 11 Final is now
+                         available!</a></li>
+                     <li><span class="name">Ken Wills</span> <span class="meta">Oct 09, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/09/Embedded-Host-Controller/">Running an Embedded WildFly
+                         Host Controller in the CLI</a></li>
+                     <li><span class="name">Stuart Douglas</span> <span class="meta">Oct 06, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/06/OpenSSL-Support-In-Wildfly/">OpenSSL support with
+                         WildFly</a></li>
+                     <li><span class="name">Jeff Mesnil</span> <span class="meta">Oct 03, 2017</span> <a
+                             href="http://wildfly.org/news/2017/10/03/Messaging-features/">Messaging features in WildFly
+                         11</a></li>
+                     <li><span class="name">Brian Stansberry</span> <span class="meta">Sep 29, 2017</span> <a
+                             href="http://wildfly.org/news/2017/09/29/Management-model-referential-integrity/">Management
+                         Model Referential Integrity and Suggestions</a></li>
+                     <li><a class="pull-right" href="http://wildfly.org/news">More &raquo;</a></li>
+                 </ul>
+             </div>
+         </div>
+     </div>
+ </div>
+
+</div>
+<footer class="container">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-1"><h4>Navigate</h4>
+            <ul>
+                <li><a href="http://wildfly.org/about/" title="About">About</a></li>
+                <li><a href="http://wildfly.org/gethelp/" title="Get Help">Get Help</a></li>
+                <li><a href="https://community.jboss.org/en/wildfly?view=discussion" title="Forums">Forums</a></li>
+                <li><a href="http://wildfly.org/downloads/" title="Download">Download</a></li>
+                <li><a href="http://wildfly.org/swarm/" title="WildFly Swarm">WildFly Swarm</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2"><h4>Follow Us</h4>
+            <ul>
+                <li><a href="http://wildfly.org/news/" title="News">News</a> <a href="http://wildfly.org/news.atom" title="Atom">(Atom Feed)</a></li>
+                <li><a href="https://twitter.com/WildFlyAS" title="Twitter">Twitter</a></li>
+                <li><a href="https://plus.google.com/communities/103877841516607784660" title="Google+">Google+</a></li>
+            </ul>
+        </div>
+        <div class="col-md-2"><h4>Contribute</h4>
+            <ul>
+                <li><a href="https://issues.jboss.org/browse/WFLY" title="Submit a bug">Submit a bug</a></li>
+                <li><a href="https://github.com/wildfly/wildfly/fork" title="Fork">Fork The Code</a></li>
+                <li><a href="http://wildfly.org/joinus/" title="Join Us">Join Us</a></li>
+                <li><a href="http://wildfly.org/governance/" title="Governance">Governance</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 col-md-offset-1"><h4>LGPL 2.1 License</h4>
+            <p>All dependencies of this project are available under the LGPL or a compatible license.</p></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1"><p style="margin-top: 5px; font-size: 80%;"> © Copyright 2017 Red Hat, Inc. <br> <i class="icon-fire"></i> Made with <a
+                href="https://github.com/jbossorg/bootstrap-community" style="text-decoration: underline;">JBoss Community Bootstrap</a> and <a
+                href="http://awestruct.org/" style="text-decoration: underline;">Awestruct</a> <br> <i class="icon-globe"></i> This website is open source! If you want to
+            improve it, <a href="http://github.com/wildfly/wildfly.org" style="text-decoration: underline;">fork the project,</a> and send a pull request. <br> <i
+                    class="icon-share"></i> Website released under <a href="http://creativecommons.org/licenses/by/3.0/" style="text-decoration: underline;">CC BY 3.0.</a></p></div>
+        <div class="col-md-3 col-md-offset-1">
+            <div class="jbossbadge"><a href="http://www.jboss.org/"> <img src="http://static.jboss.org/theme/images/common/jbossbadge.png"> </a></div>
+        </div>
+        <div id="companyfooter">
+            <div class="redhatlogo">
+                <div id="logospacer"></div>
+                <a href="http://www.redhat.com/"><img src="http://static.jboss.org/theme/images/common/redhat_logo.png"></a></div>
+        </div>
+    </div>
+</footer>
+<span class="backToTop"> <a href="#top">back to top</a> </span>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="../js/bootstrap.min.js"></script>
+</body>
+</html>
