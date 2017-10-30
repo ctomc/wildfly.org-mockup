@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JBake</title>
-    <link>http://wildfly.org</link>
-    <atom:link href="http://wildfly.org/feed.xml" rel="self" type="application/rss+xml" />
+    <link>http://localhost:8820</link>
+    <atom:link href="http://localhost:8820/feed.xml" rel="self" type="application/rss+xml" />
     <description>JBake Bootstrap Template</description>
     <language>en-gb</language>
-    <pubDate>Tue, 31 Oct 2017 00:16:56 +0100</pubDate>
-    <lastBuildDate>Tue, 31 Oct 2017 00:16:56 +0100</lastBuildDate>
+    <pubDate>Tue, 31 Oct 2017 00:25:42 +0100</pubDate>
+    <lastBuildDate>Tue, 31 Oct 2017 00:25:42 +0100</lastBuildDate>
 
     <item>
       <title>WildFly 11 Final is now available!</title>
-      <link>http://wildfly.org/news/2017-10-23-WildFly11-Final-Released/index.html</link>
+      <link>http://localhost:8820/news/2017-10-23-WildFly11-Final-Released/index.html</link>
       <pubDate>Mon, 23 Oct 2017 00:00:00 +0200</pubDate>
       <guid isPermaLink="false">news/2017-10-23-WildFly11-Final-Released/index.html</guid>
       	<description>
@@ -209,7 +209,7 @@
     </item>
     <item>
       <title>Running an Embedded WildFly Host Controller in the CLI</title>
-      <link>http://wildfly.org/news/2017-10-09-Embedded-Host-Controller/index.html</link>
+      <link>http://localhost:8820/news/2017-10-09-Embedded-Host-Controller/index.html</link>
       <pubDate>Mon, 9 Oct 2017 00:00:00 +0200</pubDate>
       <guid isPermaLink="false">news/2017-10-09-Embedded-Host-Controller/index.html</guid>
       	<description>
@@ -492,7 +492,7 @@ $ ./bin/jboss-cli.sh --file=commands.cli
     </item>
     <item>
       <title>OpenSSL support with WildFly</title>
-      <link>http://wildfly.org/news/2017-10-06-OpenSSL-Support-In-Wildfly/index.html</link>
+      <link>http://localhost:8820/news/2017-10-06-OpenSSL-Support-In-Wildfly/index.html</link>
       <pubDate>Fri, 6 Oct 2017 00:00:00 +0200</pubDate>
       <guid isPermaLink="false">news/2017-10-06-OpenSSL-Support-In-Wildfly/index.html</guid>
       	<description>
@@ -586,7 +586,7 @@ run-batch
     </item>
     <item>
       <title>Messaging features in WildFly 11</title>
-      <link>http://wildfly.org/news/2017-10-03-Messaging-features/index.html</link>
+      <link>http://localhost:8820/news/2017-10-03-Messaging-features/index.html</link>
       <pubDate>Tue, 3 Oct 2017 00:00:00 +0200</pubDate>
       <guid isPermaLink="false">news/2017-10-03-Messaging-features/index.html</guid>
       	<description>
