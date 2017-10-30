@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+    <url>
+        <loc>http://wildfly.org/joinus/index.html</loc>
+        <lastmod>2017-10-30</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/gethelp/index.html</loc>
+        <lastmod>2017-10-30</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/downloads/index.html</loc>
+        <lastmod>2017-10-30</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/documentation/index.html</loc>
+        <lastmod>2013-10-04</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/about/index.html</loc>
+        <lastmod>2013-10-04</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/news/2017-10-23-WildFly11-Final-Released/index.html</loc>
+        <lastmod>2017-10-23</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/news/2017-10-09-Embedded-Host-Controller/index.html</loc>
+        <lastmod>2017-10-09</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/news/2017-10-06-OpenSSL-Support-In-Wildfly/index.html</loc>
+        <lastmod>2017-10-06</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/news/2017-10-03-Messaging-features/index.html</loc>
+        <lastmod>2017-10-03</lastmod>
+    </url>
+    <url>
+        <loc>http://wildfly.org/news/index/index.html</loc>
+        <lastmod>2013-03-28</lastmod>
+    </url>
+</urlset>
