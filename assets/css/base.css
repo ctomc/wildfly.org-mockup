@@ -1,0 +1,131 @@
+
+
+/*----------------------------- Removes the website side padding on mobile devices -------------------------- */
+
+@media (max-width: 480px) {
+    body {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    #tabnav {
+        padding: 0px;
+    }
+    #tabnav .tabcontent{
+        margin: 0px;
+    }
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.banner {
+    position: relative;
+    margin-bottom: -5px;
+    z-index: 0;
+    border-radius: 5px;
+}
+.banner a img {
+    min-height: 30px;
+}
+.taglinelight,
+.taglinedark {
+    font-size: 23px;
+    position: absolute;
+    right: 40px;
+    bottom: 19px;
+    z-index: 100;
+}
+.taglinelight {
+    color: #FFFFFF;
+}
+.taglinedark {
+    color: #656565;
+}
+/* ------------------ Company Footer ------------------------- */
+#companyfooter {
+    height: 70px;
+    background-color: #f3f3f3;
+}
+.redhatlogo {
+    width: 76px;
+    margin: auto;
+}
+#logospacer {
+    height: 20px;
+}
+/*-------- This is for project sites that want to include a project footer navigation  ----------- */
+footer.container {
+    background-color: #656565;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    -moz-border-radius: 0 0 4px 4px;
+    /* firefox */
+
+    -webkit-border-radius: 0 0 4px 4px;
+    /* safari/chrome */
+
+    border-radius: 0 0 4px 4px;
+    /* CSS3, works in IE9 */
+
+}
+footer.container .container {
+    background-color: transparent;
+}
+footer.container h1,
+footer.container h2,
+footer.container h3,
+footer.container h4,
+footer.container h5,
+footer.container h6,
+footer.container p,
+footer.container a {
+    color: #d5d5d5;
+}
+footer.container ul,
+footer.container ol {
+    list-style: none;
+    margin-left: 10px;
+}
+
+/* --------------- Blog Posts (Crisp) ---------------------  */
+.posts .seemore {
+    margin-top: -35px;
+    float: right;
+}
+.listPosts {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.listPosts .avatar {
+    height: 15px;
+    width: 15px;
+    background-color: #ccc;
+    float: left;
+    margin-right: 5px;
+}
+.listPosts .meta {
+    float: right;
+    margin-top: -20px;
+    text-transform: uppercase;
+    color: #a3b0bb;
+    display: block;
+    font-size: 70%;
+}
+.listPosts .name {
+    display: block;
+    font-size: 12px;
+    color: #999;
+}
+.listPosts li {
+    padding: 5px 0;
+}
+.listPosts li:first-child {
+    padding-top: 0;
+}
+.listPosts .last,
+.listPosts li:last-child {
+    border: none;
+}
+

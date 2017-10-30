@@ -1,0 +1,12 @@
+= Documentation
+tcerar
+2017-10-04
+:revdate: 2013-10-04 14:39:25 -0600
+:jbake-type: page
+:jbake-status: published
+
+
+WildFly docs consist of many parts
+
+https://docs.jboss.org/author/display/WFLY/Documentation
+
